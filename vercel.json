@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["node_modules/**"],
+        "installCommand": "npm install --build-from-source=canvas",
+        "runtime": "nodejs18.x"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/config-name",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/api-list",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
+    }
+  ],
+  "env": {
+    "LD_LIBRARY_PATH": "/var/task/node_modules/canvas/build/Release"
+  }
+}

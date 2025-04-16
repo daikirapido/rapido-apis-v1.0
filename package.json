@@ -1,0 +1,31 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "",
+    "cheerio": "",
+    "compression": "",
+    "cors": "",
+    "express": "",
+    "express-rate-limit": "",
+    "fs-extra": "",
+    "helmet": "",
+    "kleur": "",
+    "mal-scraper": "",
+    "moment-timezone": "",
+    "request": "",
+    "ssl-express-www": "",
+    "random-useragent": ""
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

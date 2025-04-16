@@ -1,0 +1,12 @@
+{
+  "port": "8080",
+  "title": "Alex API",
+  "title2": "ALEX Rest API",
+  "favicon": "https://imgur.com/kXEoAFg.png",
+  "notifications": [
+    {
+      "title": "Fixed API's",
+      "description": "We have resolved various issues in our API endpoints to ensure smoother performance, improved stability, and better response times."
+    }
+  ]
+}

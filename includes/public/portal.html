@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#0A1220',
+            surface: '#152030',
+            accent: '#3FEEE6',
+            border: '#2A4457'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Roboto', 'sans-serif'],
+            roboto: ['Roboto', 'sans-serif']
+          },
+          animation: {
+            'fade-in': 'fade-in 1s ease-out',
+            'fade-in-up': 'fade-in-up 1s ease-out',
+            'fade-in-left': 'fade-in-left 1s ease-out',
+            'fade-in-right': 'fade-in-right 1s ease-out',
+            'pulse-glow': 'pulse-glow 3s infinite'
+          },
+          keyframes: {
+            'fade-in': {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            'fade-in-up': {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            'fade-in-left': {
+              '0%': { opacity: '0', transform: 'translateX(-20px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' }
+            },
+            'fade-in-right': {
+              '0%': { opacity: '0', transform: 'translateX(20px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' }
+            },
+            'pulse-glow': {
+              '0%, 100%': { boxShadow: '0 0 10px rgba(63, 238, 230, 0.3)' },
+              '50%': { boxShadow: '0 0 20px rgba(63, 238, 230, 0.6)' }
+            }
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0A1220;
+      color: rgba(255, 255, 255, 0.87);
+      overflow-x: hidden;
+      font-family: 'Roboto', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #3FEEE6, #2E8B57);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #3FEEE6, #2E8B57);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 18, 32, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .loader {
+      border: 4px solid #3FEEE6;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="font-roboto antialiased">
+  <div id="loading-overlay">
+    <div class="loader"></div>
+  </div>
+
+  <header class="fixed top-0 left-0 right-0 bg-surface/90 backdrop-blur-sm border-b border-border z-50 animate-fade-in-down">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-2 animate-fade-in">
+          <img src="https://i.ibb.co/XYk4dXn/image.png" alt="Rest Logo" class="w-8 h-8">
+          <h1 class="text-xl font-semibold gradient-text">Rest API Portal</h1>
+        </div>
+        <nav class="hidden md:flex space-x-6 animate-fade-in">
+          <a href="#features" class="text-white/70 hover:text-accent transition duration-300 text-sm font-medium animate-fade-in-right">Features</a>
+          <a href="#terms" class="text-white/70 hover:text-accent transition duration-300 text-sm font-medium animate-fade-in-left">Terms</a>
+        </nav>
+        <button id="menu-toggle" class="md:hidden text-white/70 hover:text-accent transition duration-300" aria-label="Toggle mobile menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden border-t border-border animate-fade-in">
+        <nav class="py-4 space-y-4">
+          <a href="#features" class="block text-white/70 hover:text-accent transition duration-300 text-sm font-medium px-4 animate-fade-in-right">Features</a>
+          <a href="#terms" class="block text-white/70 hover:text-accent transition duration-300 text-sm font-medium px-4 animate-fade-in-left">Terms</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <section id="hero" class="py-20 px-4 sm:py-32 section">
+      <div class="container mx-auto max-w-4xl">
+        <div class="text-center">
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 gradient-text leading-tight tracking-tight animate-fade-in-up">
+            Free REST API
+          </h2>
+          <p class="text-lg sm:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed animate-slow-fade">
+            Access powerful API endpoints for your projects without the hassle of authentication. Start building amazing applications today!
+          </p>
+          <a href="/docs" id="docs-link" class="inline-block gradient-bg text-white font-semibold py-4 px-8 rounded-lg transition duration-300 ease-in-out text-lg hover:opacity-90">
+            View Dashboard
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="py-20 sm:py-32 bg-surface border-y border-border section">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center gradient-text animate-fade-in-down">Why Choose Our API?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-background p-8 rounded-lg border border-border hover:border-accent transition duration-300 animate-fade-in-left">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-accent animate-fade-in-right">No Authentication</h3>
+            <p class="text-white/70 leading-relaxed animate-slow-fade">Access our APIs instantly without the need for API keys or complex authentication processes.</p>
+          </div>
+          <div class="bg-background p-8 rounded-lg border border-border hover:border-accent transition duration-300 animate-fade-in-up">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-accent animate-fade-in-down">High Performance</h3>
+            <p class="text-white/70 leading-relaxed animate-slow-fade">Enjoy fast response times and reliable service for all your API needs.</p>
+          </div>
+          <div class="bg-background p-8 rounded-lg border border-border hover:border-accent transition duration-300 animate-fade-in-right">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-accent animate-fade-in-left">Comprehensive Documentation</h3>
+            <p class="text-white/70 leading-relaxed animate-slow-fade">Access detailed documentation to help you integrate our API seamlessly into your projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="terms" class="py-20 sm:py-32 section">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 sm:mb-16 text-center gradient-text animate-fade-in-down">Terms of Service</h2>
+        <div class="bg-surface p-8 sm:p-12 rounded-lg border border-accent animate-fade-in-up">
+          <h3 class="text-2xl sm:text-3xl font-semibold mb-8 gradient-text animate-slow-fade">Usage Guidelines</h3>
+          <ul class="list-disc list-inside space-y-4 text-white/70 mb-8 text-lg">
+            <li class="animate-fade-in-left">Use the API for lawful purposes only</li>
+            <li class="animate-fade-in-right">Do not attempt to overload or disrupt our services</li>
+            <li class="animate-fade-in-left">Respect rate limits and usage quotas</li>
+            <li class="animate-fade-in-right">Attribute our API when using it in your applications</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-surface border-t border-border py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0 animate-fade-in-left">
+          <p class="text-white/70">&copy; <span id="current-year"></span> Rest API Portal</p>
+        </div>
+        <div class="animate-fade-in-right">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="gradient-text hover:opacity-90 transition duration-300">
+            Developed by @jm 
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const docsLink = document.getElementById('docs-link');
+    const loadingOverlay = document.getElementById('loading-overlay');
+
+    docsLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      loadingOverlay.style.display = 'flex';
+
+      setTimeout(() => {
+        window.location.href = '/docs';
+      }, 1500);
+    });
+
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        loadingOverlay.style.display = 'none';
+      }
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        if (window.innerWidth < 768) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
