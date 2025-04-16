@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 exports.config = {
-  name: "Tempmail Gen",
+  name: "Tempmail-Gen",
   version: "1.0.0",
   author: "@jm",
   description: "",

@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 exports.config = {
-  name: "Tempmail Inbox",
+  name: "Tempmail-Inbox",
   version: "1.0.0",
   author: "@jm",
   description: "",
