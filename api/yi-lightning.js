@@ -1,12 +1,12 @@
 const axios = require('axios');
 
 exports.config = {
-  name: 'yi lightning',
+  name: 'Yi-lightning',
   method: 'get',
   author: '@jm',
   description: '',
   category: 'ai',
-  link: ['/yi-l?ask=hi&uid=3']
+  link: ['/yi-lightning?ask=hi&uid=3']
 };
 
 exports.initialize = async function({ req, res }) {

@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 exports.config = {
-  name: 'Yi Vision',
+  name: 'Yi-Vision',
   author: '@jm',
   description: '',
   method: 'get',
