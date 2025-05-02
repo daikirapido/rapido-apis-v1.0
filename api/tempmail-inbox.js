@@ -7,7 +7,7 @@ exports.config = {
   description: "",
   category: "tempmail",
   method: "get",
-  link: ["/tempmail/inbox?email="]
+  link: ["/tempmail-inbox?email="]
 };
 
 exports.initialize = async function({ req, res }) {
